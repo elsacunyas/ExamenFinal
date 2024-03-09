@@ -64,8 +64,6 @@ public class LibroService {
 
 		Calendar fecha = Calendar.getInstance();
 		fecha.add(Calendar.MONTH, -6);
-		
-		System.out.println(fecha.getTime());
 
 		return libroRepository.findAllWithCreationDateTimeBefore(fecha.getTime()).size();
 
