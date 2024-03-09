@@ -40,47 +40,66 @@ public class Libro {
 	@JoinColumn(name = "idgenero",nullable = false)
 	public Genero genero;
 
+
+
 	public Long getIdLibro() {
 		return idLibro;
 	}
+
+
 
 	public void setIdLibro(Long idLibro) {
 		this.idLibro = idLibro;
 	}
 
+
+
 	public String getNombreLibro() {
 		return nombreLibro;
 	}
+
+
 
 	public void setNombreLibro(String nombreLibro) {
 		this.nombreLibro = nombreLibro;
 	}
 
+
+
 	public String getNombreAutor() {
 		return nombreAutor;
 	}
+
+
 
 	public void setNombreAutor(String nombreAutor) {
 		this.nombreAutor = nombreAutor;
 	}
 
-	
+
 
 	public Date getFechaPublicacion() {
 		return fechaPublicacion;
 	}
 
+
+
 	public void setFechaPublicacion(Date fechaPublicacion) {
 		this.fechaPublicacion = fechaPublicacion;
 	}
+
+
 
 	public Genero getGenero() {
 		return genero;
 	}
 
+
+
 	public void setGenero(Genero genero) {
 		this.genero = genero;
 	}
+
 	
 	
 

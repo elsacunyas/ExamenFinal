@@ -9,7 +9,6 @@ public class DetalleLibros {
 	private String autor;
 	private String genero;
 	private Date publicacion;
-	
 	public Long getIdLib() {
 		return idLib;
 	}
@@ -22,7 +21,6 @@ public class DetalleLibros {
 	public void setLibro(String libro) {
 		this.libro = libro;
 	}
-	
 	public String getAutor() {
 		return autor;
 	}
@@ -41,6 +39,8 @@ public class DetalleLibros {
 	public void setPublicacion(Date publicacion) {
 		this.publicacion = publicacion;
 	}
+	
+
 	
 	
 	
