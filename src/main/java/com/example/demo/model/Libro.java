@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import javax.validation.constraints.Size;
 
@@ -32,6 +34,8 @@ public class Libro {
 	@Column(name = "fechaPublicacion")
 	public Date fechaPublicacion;
 	
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "idgenero",nullable = false)
 	public Genero genero;
@@ -59,6 +63,8 @@ public class Libro {
 	public void setNombreAutor(String nombreAutor) {
 		this.nombreAutor = nombreAutor;
 	}
+
+	
 
 	public Date getFechaPublicacion() {
 		return fechaPublicacion;

@@ -18,11 +18,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.model.DetalleLibros;
 import com.example.demo.model.Genero;
 import com.example.demo.model.Libro;
+import com.example.demo.model.ReporteCantidad;
 import com.example.demo.service.GeneroService;
 import com.example.demo.service.LibroService;
+
 
 import jakarta.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
@@ -36,6 +37,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
 @Controller
 @RequestMapping("/libros")
 public class LibroController {
+	
 	
 	@Autowired
 	private LibroService libroService;
@@ -137,5 +139,33 @@ public class LibroController {
 		final OutputStream outputStream = response.getOutputStream();
 		JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
 	}
+	
+	@GetMapping("/reportlp")
+	public void generarReporte(HttpServletResponse response) throws JRException, IOException {
+	    
+	    InputStream jasperStream = this.getClass().getResourceAsStream("/reporte/librosRegistrados.jasper");
 
+	    Map<String, Object> params = new HashMap<>();
+	    params.put("usuario", "Elsa Huaman");
+	    
+	    	List<ReporteCantidad> cantidadList = new ArrayList<ReporteCantidad>();
+	    	ReporteCantidad cantidad = new ReporteCantidad();
+	    	cantidad.setCantidad(libroService.getCantidad());
+	    	cantidadList.add(cantidad);
+
+	    JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(cantidadList);
+
+	    JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+
+	    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, dataSource);
+
+	    response.setContentType("application/x-pdf");
+	    response.setHeader("Content-disposition", "filename=libros_registrados.pdf");
+
+	    OutputStream outputStream = response.getOutputStream();
+	    JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
+
+	}
+	
+	
 }
