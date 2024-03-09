@@ -13,7 +13,7 @@ import com.example.demo.model.Libro;
 
 public interface LibroRepository extends JpaRepository<Libro, Long> {
 	
-	@Query("select l from Libro l where l.fechaPublicacion <= :fecha")
+	@Query("select l from Libro l where l.fechaPublicacion >= :fecha")
     public List<Libro> findAllWithCreationDateTimeBefore(
       @Param("fecha") Date  fecha);
 	
